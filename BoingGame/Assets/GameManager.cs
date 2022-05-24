@@ -8,6 +8,11 @@ public class GameManager : MonoBehaviour
 
     public float speed = 1;
 
+    private void Start()
+    {
+        playerInfo = new PlayerController();
+    }
+
     private void FixedUpdate()
     {
         if (playerInfo.start && !playerInfo.isFalling)

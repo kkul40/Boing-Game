@@ -6,7 +6,7 @@ public class PlatformSpawner : MonoBehaviour
 {
     public GameObject[] Platforms;
 
-    private GameManager gameManager;
+    public GameManager gameManager;
 
 
     public float minX;
@@ -27,7 +27,7 @@ public class PlatformSpawner : MonoBehaviour
         {
             lastSpawnTime = 0;
             GameObject instance = Instantiate(Platforms[0]);
-            instance.transform.position = new Vector3(minX, 0, 0);
+            instance.transform.position = new Vector3(minX, height, 0);
         }
 
     }

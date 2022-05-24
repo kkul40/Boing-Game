@@ -2,17 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlatformController : MonoBehaviour
 {
-    private GameManager gameManager;
+    public GameManager gameManager;
 
 
     public float destructionPosX;
 
 
+    private void Start()
+    {
+        gameManager = new GameManager();
+    }
+
     private void FixedUpdate()
     {
-        if (gameManager.playerInfo.start && !gameManager.playerInfo.isFalling)
+
+        Debug.Log(gameManager.speed);
+
+        /*if (start && !fall)
         {
             transform.position += new Vector3(-gameManager.speed * Time.deltaTime, 0f, 0f);
 
@@ -21,7 +30,7 @@ public class PlatformController : MonoBehaviour
         if (transform.position.x < destructionPosX)
         {
             Destroy(gameObject);   
-        }
+        }*/
 
 
 
