@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
 
     private void FixedUpdate()
     {
+
         time += Time.deltaTime;
 
         if (time >= 2)
@@ -19,7 +20,11 @@ public class GameManager : MonoBehaviour
             speed += 1 * Time.deltaTime;
             time = 0;
         }
-        Debug.Log(Skor);
+
+
+
+
+
 
 
     }
