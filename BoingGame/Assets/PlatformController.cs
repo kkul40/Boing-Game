@@ -21,6 +21,8 @@ public class PlatformController : MonoBehaviour
 
         Debug.Log(gameManager.speed);
 
+
+        transform.position += new Vector3(-gameManager.speed * Time.deltaTime, 0f, 0f);
         /*if (start && !fall)
         {
             transform.position += new Vector3(-gameManager.speed * Time.deltaTime, 0f, 0f);

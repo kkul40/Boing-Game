@@ -22,10 +22,15 @@ public class PlatformSpawner : MonoBehaviour
     {
         lastSpawnTime += Time.deltaTime;
 
+        gameManager = new GameManager();
+
+        Debug.Log(gameManager.playerInfo.force);
+
 
         if (lastSpawnTime > spawnDuration && gameManager.playerInfo.start)
         {
             lastSpawnTime = 0;
+
             GameObject instance = Instantiate(Platforms[0]);
             instance.transform.position = new Vector3(minX, height, 0);
         }
