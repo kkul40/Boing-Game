@@ -6,44 +6,59 @@ public class PlayerController : MonoBehaviour
 {
 
     private Rigidbody2D rb;
-    private BoxCollider2D collider;
+    private Animator anim;
     public float force;
 
-    private float speed = 1;
-    private bool start;
-
+    public bool start;
+    public bool isFalling;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        collider = GetComponent<BoxCollider2D>();
-
+        anim = GetComponent<Animator>();
     }
 
 
     private void FixedUpdate()
     {
-        if (start) transform.position += new Vector3(speed * Time.deltaTime, 0f, 0f);
-
+        // JUMP ANÝMATÝON CONTROLÝNG BY VELOCÝTY
+        if (rb.velocity.y < 0)
+        {
+            anim.SetBool("isJumping", false);
+        }
+        else if (rb.velocity.y > 0)
+        {
+            anim.SetBool("isJumping", true);
+        }
     }
 
-
-    private void OnMouseUp()
-    {
-        if (!start) rb.AddForce(Vector2.up * force);
-
-        start = true;
-    }
-
-    public void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
 
        if (collision.gameObject.tag == "Platform" && start)
         {
             rb.AddForce(Vector2.up * force);
+            isFalling = false;
         }
     }
 
-   
+
+    public void Fall()
+    {
+        if (!isFalling && start)
+        {
+            rb.AddForce(Vector2.down * force);
+            isFalling = true;
+        }
+
+        if (!start) runGame();
+
+    }
+
+   public void runGame()
+    {
+        rb.AddForce(Vector2.up * force);
+        start = true;
+    }
 
 }
