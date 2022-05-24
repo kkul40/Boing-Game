@@ -5,37 +5,22 @@ using UnityEngine;
 
 public class PlatformController : MonoBehaviour
 {
-    public GameManager gameManager;
-
-
-    public float destructionPosX;
-
-
-    private void Start()
-    {
-        gameManager = new GameManager();
-    }
 
     private void FixedUpdate()
     {
 
-        Debug.Log(gameManager.speed);
-
-
-        transform.position += new Vector3(-gameManager.speed * Time.deltaTime, 0f, 0f);
-        /*if (start && !fall)
+        if (PlayerController.start && !PlayerController.isFalling)
         {
-            transform.position += new Vector3(-gameManager.speed * Time.deltaTime, 0f, 0f);
+            transform.position += new Vector3(-GameManager.speed * Time.deltaTime, 0f, 0f);
 
         }
 
-        if (transform.position.x < destructionPosX)
+        if (transform.position.x < -3)
         {
             Destroy(gameObject);   
-        }*/
-
-
+        }
 
     }
+
 
 }

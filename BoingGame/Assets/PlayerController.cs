@@ -9,8 +9,16 @@ public class PlayerController : MonoBehaviour
     private Animator anim;
     public float force;
 
-    public bool start;
-    public bool isFalling;
+    public static bool start;
+    public static bool isFalling;
+
+
+    private void Awake()
+    {
+        start = false;
+        isFalling = false;
+
+    }
 
     private void Start()
     {
@@ -38,6 +46,12 @@ public class PlayerController : MonoBehaviour
        if (collision.gameObject.tag == "Platform" && start)
         {
             rb.AddForce(Vector2.up * force);
+            GameManager.Skor += 1;
+            isFalling = false;
+        }
+       else if(collision.gameObject.tag == "DeadZone")
+        {
+            transform.position = Vector2.up;
             isFalling = false;
         }
     }
@@ -47,7 +61,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!isFalling && start)
         {
-            rb.AddForce(Vector2.down * force);
+            rb.AddForce(Vector2.down * force, ForceMode2D.Force);
             isFalling = true;
         }
 

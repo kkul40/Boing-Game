@@ -4,21 +4,22 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public PlayerController playerInfo;
+    public static float speed = 1;
 
-    public float speed = 1;
+    private float time;
 
-    private void Start()
-    {
-        playerInfo = new PlayerController();
-    }
+    public static int Skor;
 
     private void FixedUpdate()
     {
-        if (playerInfo.start && !playerInfo.isFalling)
+        time += Time.deltaTime;
+
+        if (time >= 2)
         {
-            speed += Time.deltaTime / 10;
+            speed += 1 * Time.deltaTime;
+            time = 0;
         }
+        Debug.Log(Skor);
 
 
     }
